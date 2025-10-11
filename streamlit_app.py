@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
 from sklearn.preprocessing import StandardScaler
 import plotly.express as px
 import plotly.graph_objects as go
@@ -235,5 +236,6 @@ if model:
                 st.write(result["risk_factors"])
 else:
     st.error("❌ Model not loaded. Please ensure model files exist in the `model/` folder.")
+
 
 
