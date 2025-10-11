@@ -1,0 +1,6 @@
+Sample Customer Prediction:
+default_probability : 0.0175
+credit_score        : 791
+credit_rating       : Very Good
+decision            : APPROVE
+risk_level          : Low

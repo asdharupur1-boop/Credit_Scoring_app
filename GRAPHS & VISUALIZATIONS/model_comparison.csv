@@ -1,0 +1,4 @@
+Model,Accuracy,AUC Score
+Logistic Regression,0.81274,0.8713179666666666
+Gradient Boosting,0.81238,0.8704863604761905
+Random Forest,0.80794,0.863388875
