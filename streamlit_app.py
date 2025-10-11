@@ -64,25 +64,25 @@ with st.sidebar:
     contact_links = [
         {
             "platform": "LinkedIn",
-            "url": "https://linkedin.com/in/ayush-shukla",
+            "url": "https://www.linkedin.com/in/ayush-shukla-890072337/",
             "logo": get_logo_svg('linkedin'),
             "color": "#0077B5"
         },
         {
             "platform": "GitHub", 
-            "url": "https://github.com/ayush-shukla",
+            "url": "https://github.com/asdharupur1-boop/Credit_Scoring_app",
             "logo": get_logo_svg('github'),
             "color": "#333333"
         },
         {
             "platform": "Email",
-            "url": "mailto:ayush.shukla@example.com",
+            "url": "mailto:Asdharupur1@gmail.com",
             "logo": get_logo_svg('email'), 
             "color": "#D44638"
         },
         {
             "platform": "Portfolio",
-            "url": "https://ayush-shukla.github.io",
+            "url": "https://github.com/asdharupur1-boop/",
             "logo": get_logo_svg('portfolio'),
             "color": "#4285F4"
         }
@@ -683,7 +683,7 @@ if model is not None:
         st.subheader("🔗 Google Drive Access")
         st.markdown("""
         ### Download Complete Dataset:
-        [![Google Drive](https://img.shields.io/badge/Google_Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/your-dataset-link-here)
+        [![Google Drive](https://img.shields.io/badge/Google_Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1CVozSw8Jd2ScPV_UeGDQD5EG-0nZXsWV/view?usp=drive_link)
         
         **📊 Dataset Details:**
         - **500,000+** customer records with complete financial profiles
@@ -743,5 +743,6 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
