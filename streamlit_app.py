@@ -62,25 +62,25 @@ with st.sidebar:
     contact_links = [
         {
             "platform": "LinkedIn",
-            "url": "https://linkedin.com/in/ayush-shukla",
+            "url": "https://www.linkedin.com/in/ayush-shukla-890072337/",
             "logo": get_logo_svg('linkedin'),
             "color": "#0077B5"
         },
         {
             "platform": "GitHub", 
-            "url": "https://github.com/ayush-shukla",
+            "url": "https://github.com/asdharupur1-boop/Credit_Scoring_app",
             "logo": get_logo_svg('github'),
             "color": "#333333"
         },
         {
             "platform": "Email",
-            "url": "mailto:ayush.shukla@example.com",
+            "url": "mailto:Asdharupur1@gmail.com",
             "logo": get_logo_svg('email'), 
             "color": "#D44638"
         },
         {
             "platform": "Portfolio",
-            "url": "https://ayush-shukla.github.io",
+            "url": "https://github.com/asdharupur1-boop",
             "logo": get_logo_svg('portfolio'),
             "color": "#4285F4"
         }
@@ -726,7 +726,7 @@ if model is not None:
         st.subheader("🔗 Google Drive Access")
         st.markdown("""
         ### Download Complete Dataset:
-        [![Google Drive](https://img.shields.io/badge/Google_Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/your-dataset-link-here)
+        [![Google Drive](https://img.shields.io/badge/Google_Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1CVozSw8Jd2ScPV_UeGDQD5EG-0nZXsWV/view?usp=drive_link)
         
         **📊 Dataset Details:**
         - **500,000+** customer records with complete financial profiles
@@ -763,16 +763,16 @@ st.markdown("""
 <div style='text-align: center; padding: 20px;'>
     <h4>🔗 Connect with the Developer</h4>
     <div style='display: flex; justify-content: center; gap: 15px; margin: 15px 0;'>
-        <a href="https://linkedin.com/in/ayush-shukla" target="_blank" style="text-decoration: none;">
+        <a href="https://www.linkedin.com/in/ayush-shukla-890072337/" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
         </a>
-        <a href="https://github.com/ayush-shukla" target="_blank" style="text-decoration: none;">
+        <a href="https://github.com/asdharupur1-boop/Credit_Scoring_app" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
         </a>
-        <a href="mailto:ayush.shukla@example.com" style="text-decoration: none;">
+        <a href="mailto:Asdharupur1@gmail.com.com" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
         </a>
-        <a href="https://ayush-shukla.github.io" target="_blank" style="text-decoration: none;">
+        <a href="https://github.com/asdharupur1-boop" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/Portfolio-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio">
         </a>
     </div>
@@ -786,4 +786,5 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
