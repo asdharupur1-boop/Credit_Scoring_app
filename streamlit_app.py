@@ -145,8 +145,29 @@ def load_model():
 
 # Prediction function with enhanced output
 def predict_credit(data, model, scaler):
+    def predict_credit(data, model, scaler):
     try:
         df = pd.DataFrame([data])
+        
+        # Add missing features that were in training
+        required_features = [
+            'age', 'income', 'employment_length', 'loan_amount', 'credit_score',
+            'debt_to_income_ratio', 'years_at_residence', 'number_of_credit_lines',
+            'number_of_late_payments', 'credit_utilization', 'has_previous_default',
+            'loan_term', 'home_ownership_MORTGAGE', 'home_ownership_OWN', 
+            'home_ownership_RENT', 'loan_purpose_BUSINESS', 'loan_purpose_CAR',
+            'loan_purpose_DEBT_CONSOLIDATION', 'loan_purpose_HOME_IMPROVEMENT',
+            'loan_purpose_MEDICAL', 'loan_purpose_PERSONAL', 'age_group_18-25',
+            'age_group_26-35', 'age_group_36-45', 'age_group_46-55', 'age_group_56-65',
+            'age_group_65+', 'credit_score_category_Poor', 'credit_score_category_Fair',
+            'credit_score_category_Good', 'credit_score_category_Very Good',
+            'credit_score_category_Excellent'
+        ]
+        
+        # Ensure all required features exist
+        for feature in required_features:
+            if feature not in df.columns:
+                df[feature] = 0
         
         # Scale numerical features
         numerical_features = ['age', 'income', 'employment_length', 'loan_amount', 
@@ -156,6 +177,12 @@ def predict_credit(data, model, scaler):
         existing_features = [f for f in numerical_features if f in df.columns]
         df_scaled = df.copy()
         df_scaled[existing_features] = scaler.transform(df[existing_features])
+        
+        # Reorder columns to match training
+        df_scaled = df_scaled[required_features]
+        
+        # Predict
+        default_prob = model.predict_proba(df_scaled)[0, 1]
         
         # Predict
         default_prob = model.predict_proba(df_scaled)[0, 1]
@@ -743,6 +770,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
