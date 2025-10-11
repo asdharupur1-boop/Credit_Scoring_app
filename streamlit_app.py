@@ -720,16 +720,16 @@ st.markdown("""
 <div style='text-align: center; padding: 20px;'>
     <h4>🔗 Connect with the Developer</h4>
     <div style='display: flex; justify-content: center; gap: 15px; margin: 15px 0;'>
-        <a href="https://linkedin.com/in/ayush-shukla" target="_blank" style="text-decoration: none;">
+        <a href="https://www.linkedin.com/in/ayush-shukla-890072337/" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
         </a>
-        <a href="https://github.com/ayush-shukla" target="_blank" style="text-decoration: none;">
+        <a href="https://github.com/asdharupur1-boop/Credit_Scoring_app" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
         </a>
-        <a href="mailto:ayush.shukla@example.com" style="text-decoration: none;">
+        <a href="mailto:Asdharupur1@gmail.com" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
         </a>
-        <a href="https://ayush-shukla.github.io" target="_blank" style="text-decoration: none;">
+        <a href="https://github.com/asdharupur1-boop/Credit_Scoring_app" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/Portfolio-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio">
         </a>
     </div>
@@ -743,6 +743,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
