@@ -76,17 +76,31 @@ st.markdown('<h1 class="main-header">🏦 AI-Powered Credit Scoring System</h1>'
 # ------------------------ MODEL LOADING ------------------------
 @st.cache_resource
 def load_model():
-    try:
-        model = joblib.load('model/best_model.pkl')
-    except Exception as e:
-        st.error(f"Model load error: {e}")
-        model = None
+    # Load model function with robust path handling
+import os
+
+@st.cache_resource
+def load_model():
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    MODEL_PATH = os.path.join(BASE_DIR, "model", "best_model.pkl")
+    SCALER_PATH = os.path.join(BASE_DIR, "model", "feature_scaler.pkl")
+
+    model, scaler = None, None
 
     try:
-        scaler = joblib.load('model/feature_scaler.pkl')
+        model = joblib.load(MODEL_PATH)
+    except Exception as e:
+        st.error(f"Model load error: {e}")
+
+    try:
+        scaler = joblib.load(SCALER_PATH)
     except Exception as e:
         st.warning(f"Scaler load warning: {e}")
-        scaler = None
+
+    if model is None:
+        st.error("❌ Model not loaded. Please ensure model files exist in the 'model/' folder.")
+    else:
+        st.success("✅ Model loaded successfully!")
 
     return model, scaler
 
@@ -221,4 +235,5 @@ if model:
                 st.write(result["risk_factors"])
 else:
     st.error("❌ Model not loaded. Please ensure model files exist in the `model/` folder.")
+
 
