@@ -144,40 +144,36 @@ def load_model():
 # FIXED Prediction function with all required features
 def predict_credit(data, model, scaler):
     try:
-        # Create DataFrame
         df = pd.DataFrame([data])
         
-        # Define ALL features that were used during training
-        required_features = [
-            'age', 'income', 'employment_length', 'loan_amount', 'credit_score',
-            'debt_to_income_ratio', 'years_at_residence', 'number_of_credit_lines',
-            'number_of_late_payments', 'credit_utilization', 'has_previous_default',
-            'loan_term', 'home_ownership_MORTGAGE', 'home_ownership_OWN', 
-            'home_ownership_RENT', 'loan_purpose_BUSINESS', 'loan_purpose_CAR',
-            'loan_purpose_DEBT_CONSOLIDATION', 'loan_purpose_HOME_IMPROVEMENT',
-            'loan_purpose_MEDICAL', 'loan_purpose_PERSONAL', 'age_group_18-25',
-            'age_group_26-35', 'age_group_36-45', 'age_group_46-55', 'age_group_56-65',
-            'age_group_65+', 'credit_score_category_Poor', 'credit_score_category_Fair',
-            'credit_score_category_Good', 'credit_score_category_Very Good',
-            'credit_score_category_Excellent'
-        ]
+        # Get the actual features the model expects
+        if hasattr(model, 'feature_names_in_'):
+            required_features = list(model.feature_names_in_)
+        else:
+            # Fallback to basic features if we can't get feature names
+            required_features = ['age', 'income', 'employment_length', 'loan_amount', 'credit_score',
+                               'debt_to_income_ratio', 'years_at_residence', 'number_of_credit_lines',
+                               'number_of_late_payments', 'credit_utilization', 'has_previous_default',
+                               'loan_term']
         
-        # Ensure all required features exist in the dataframe
+        # Ensure all required features exist
         for feature in required_features:
             if feature not in df.columns:
                 df[feature] = 0
         
-        # Scale numerical features
+        # Use only the features that exist in both datasets
+        existing_features = [f for f in required_features if f in df.columns]
+        df = df[existing_features]
+        
+        # Scale numerical features that exist
         numerical_features = ['age', 'income', 'employment_length', 'loan_amount', 
                              'credit_score', 'debt_to_income_ratio', 'years_at_residence',
                              'number_of_credit_lines', 'number_of_late_payments', 'credit_utilization']
         
-        existing_features = [f for f in numerical_features if f in df.columns]
+        existing_num_features = [f for f in numerical_features if f in df.columns]
         df_scaled = df.copy()
-        df_scaled[existing_features] = scaler.transform(df[existing_features])
-        
-        # Reorder columns to match training data
-        df_scaled = df_scaled[required_features]
+        if existing_num_features:
+            df_scaled[existing_num_features] = scaler.transform(df[existing_num_features])
         
         # Predict
         default_prob = model.predict_proba(df_scaled)[0, 1]
@@ -790,3 +786,4 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
