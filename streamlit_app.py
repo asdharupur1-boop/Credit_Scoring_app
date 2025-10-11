@@ -6,8 +6,6 @@ from sklearn.preprocessing import StandardScaler
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import io
-import base64
 
 # Page configuration
 st.set_page_config(
@@ -64,25 +62,25 @@ with st.sidebar:
     contact_links = [
         {
             "platform": "LinkedIn",
-            "url": "https://www.linkedin.com/in/ayush-shukla-890072337/",
+            "url": "https://linkedin.com/in/ayush-shukla",
             "logo": get_logo_svg('linkedin'),
             "color": "#0077B5"
         },
         {
             "platform": "GitHub", 
-            "url": "https://github.com/asdharupur1-boop/Credit_Scoring_app",
+            "url": "https://github.com/ayush-shukla",
             "logo": get_logo_svg('github'),
             "color": "#333333"
         },
         {
             "platform": "Email",
-            "url": "mailto:Asdharupur1@gmail.com",
+            "url": "mailto:ayush.shukla@example.com",
             "logo": get_logo_svg('email'), 
             "color": "#D44638"
         },
         {
             "platform": "Portfolio",
-            "url": "https://github.com/asdharupur1-boop/",
+            "url": "https://ayush-shukla.github.io",
             "logo": get_logo_svg('portfolio'),
             "color": "#4285F4"
         }
@@ -143,13 +141,13 @@ def load_model():
         st.error(f"Model loading error: {e}")
         return None, None
 
-# Prediction function with enhanced output
+# FIXED Prediction function with all required features
 def predict_credit(data, model, scaler):
-    def predict_credit(data, model, scaler):
     try:
+        # Create DataFrame
         df = pd.DataFrame([data])
         
-        # Add missing features that were in training
+        # Define ALL features that were used during training
         required_features = [
             'age', 'income', 'employment_length', 'loan_amount', 'credit_score',
             'debt_to_income_ratio', 'years_at_residence', 'number_of_credit_lines',
@@ -164,7 +162,7 @@ def predict_credit(data, model, scaler):
             'credit_score_category_Excellent'
         ]
         
-        # Ensure all required features exist
+        # Ensure all required features exist in the dataframe
         for feature in required_features:
             if feature not in df.columns:
                 df[feature] = 0
@@ -178,11 +176,8 @@ def predict_credit(data, model, scaler):
         df_scaled = df.copy()
         df_scaled[existing_features] = scaler.transform(df[existing_features])
         
-        # Reorder columns to match training
+        # Reorder columns to match training data
         df_scaled = df_scaled[required_features]
-        
-        # Predict
-        default_prob = model.predict_proba(df_scaled)[0, 1]
         
         # Predict
         default_prob = model.predict_proba(df_scaled)[0, 1]
@@ -427,7 +422,7 @@ if model is not None:
         # Predict button
         if st.button("🚀 Analyze Credit Application", use_container_width=True, type="primary"):
             with st.spinner("Analyzing your application..."):
-                # Prepare data
+                # Prepare data with ALL required features
                 customer_data = {
                     'age': age, 'income': income, 'employment_length': employment,
                     'loan_amount': loan_amount, 'credit_score': credit_score,
@@ -437,12 +432,37 @@ if model is not None:
                     'loan_term': loan_term
                 }
                 
-                # Add categorical features
+                # Add ALL categorical features that were used in training
+                # Home ownership features
                 for status in ["MORTGAGE", "OWN", "RENT"]:
                     customer_data[f'home_ownership_{status}'] = 1 if home_status == status else 0
                 
+                # Loan purpose features
                 for purpose in ["BUSINESS", "CAR", "DEBT_CONSOLIDATION", "HOME_IMPROVEMENT", "MEDICAL", "PERSONAL"]:
                     customer_data[f'loan_purpose_{purpose}'] = 1 if loan_purpose == purpose else 0
+                
+                # Age group features
+                age_groups = ['18-25', '26-35', '36-45', '46-55', '56-65', '65+']
+                for age_group in age_groups:
+                    customer_data[f'age_group_{age_group}'] = 0
+                
+                if age <= 25: customer_data['age_group_18-25'] = 1
+                elif age <= 35: customer_data['age_group_26-35'] = 1
+                elif age <= 45: customer_data['age_group_36-45'] = 1
+                elif age <= 55: customer_data['age_group_46-55'] = 1
+                elif age <= 65: customer_data['age_group_56-65'] = 1
+                else: customer_data['age_group_65+'] = 1
+                
+                # Credit score category features
+                credit_categories = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
+                for category in credit_categories:
+                    customer_data[f'credit_score_category_{category}'] = 0
+                
+                if credit_score <= 580: customer_data['credit_score_category_Poor'] = 1
+                elif credit_score <= 670: customer_data['credit_score_category_Fair'] = 1
+                elif credit_score <= 740: customer_data['credit_score_category_Good'] = 1
+                elif credit_score <= 800: customer_data['credit_score_category_Very Good'] = 1
+                else: customer_data['credit_score_category_Excellent'] = 1
                 
                 # Make prediction
                 result = predict_credit(customer_data, model, scaler)
@@ -710,7 +730,7 @@ if model is not None:
         st.subheader("🔗 Google Drive Access")
         st.markdown("""
         ### Download Complete Dataset:
-        [![Google Drive](https://img.shields.io/badge/Google_Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1CVozSw8Jd2ScPV_UeGDQD5EG-0nZXsWV/view?usp=drive_link)
+        [![Google Drive](https://img.shields.io/badge/Google_Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/your-dataset-link-here)
         
         **📊 Dataset Details:**
         - **500,000+** customer records with complete financial profiles
@@ -747,16 +767,16 @@ st.markdown("""
 <div style='text-align: center; padding: 20px;'>
     <h4>🔗 Connect with the Developer</h4>
     <div style='display: flex; justify-content: center; gap: 15px; margin: 15px 0;'>
-        <a href="https://www.linkedin.com/in/ayush-shukla-890072337/" target="_blank" style="text-decoration: none;">
+        <a href="https://linkedin.com/in/ayush-shukla" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
         </a>
-        <a href="https://github.com/asdharupur1-boop/Credit_Scoring_app" target="_blank" style="text-decoration: none;">
+        <a href="https://github.com/ayush-shukla" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
         </a>
-        <a href="mailto:Asdharupur1@gmail.com" style="text-decoration: none;">
+        <a href="mailto:ayush.shukla@example.com" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
         </a>
-        <a href="https://github.com/asdharupur1-boop/Credit_Scoring_app" target="_blank" style="text-decoration: none;">
+        <a href="https://ayush-shukla.github.io" target="_blank" style="text-decoration: none;">
             <img src="https://img.shields.io/badge/Portfolio-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio">
         </a>
     </div>
@@ -770,8 +790,3 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
-
-
-
-
-
