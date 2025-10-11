@@ -46,9 +46,9 @@ with st.sidebar:
     st.subheader("🌐 Connect With Me")
 
     contact_links = [
-        {"platform": "LinkedIn", "url": "https://linkedin.com/in/ayush-shukla", "logo": get_logo_svg('linkedin'), "color": "#0077B5"},
-        {"platform": "GitHub", "url": "https://github.com/ayush-shukla", "logo": get_logo_svg('github'), "color": "#333333"},
-        {"platform": "Email", "url": "mailto:ayush.shukla@example.com", "logo": get_logo_svg('email'), "color": "#D44638"},
+        {"platform": "LinkedIn", "url": "https://www.linkedin.com/in/ayush-shukla-890072337/", "logo": get_logo_svg('linkedin'), "color": "#0077B5"},
+        {"platform": "GitHub", "url": "https://github.com/asdharupur1-boop/Credit_Scoring_app", "logo": get_logo_svg('github'), "color": "#333333"},
+        {"platform": "Email", "url": "Asdharupur1@gmail.com.com", "logo": get_logo_svg('email'), "color": "#D44638"},
     ]
 
     for c in contact_links:
@@ -221,3 +221,4 @@ if model:
                 st.write(result["risk_factors"])
 else:
     st.error("❌ Model not loaded. Please ensure model files exist in the `model/` folder.")
+
