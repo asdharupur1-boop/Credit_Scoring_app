@@ -1,29 +1,21 @@
-# Advanced Credit Scoring System v2.0 - Requirements
-# Core Data Science & Machine Learning
-pandas>=1.5.0
-numpy>=1.21.0
-scikit-learn>=1.0.0
-scipy>=1.7.0
+# Core framework
+streamlit==1.40.0
 
-# Visualization & Plotting
-matplotlib>=3.5.0
-seaborn>=0.11.0
-plotly>=5.10.0
+# Data handling
+pandas==2.2.3
+numpy==1.26.4
+openpyxl==3.1.5    # for reading XLSX files
+joblib==1.4.2
 
-# Web Application Framework
-streamlit>=1.22.0
+# Machine learning & explainability
+scikit-learn==1.5.2
+shap==0.46.0
 
-# PDF Reporting
-fpdf>=1.7.2
+# Visualization
+matplotlib==3.9.2
 
-# Data Processing & Utilities
-joblib>=1.2.0
+# File export / PDF generation
+fpdf==1.7.2
 
-# Statistical Analysis
-statsmodels>=0.13.0
-
-# Development & Testing
-pytest>=7.0.0
-
-# Date/Time Handling
-python-dateutil>=2.8.0
+# Optional cloud and utilities
+boto3==1.35.23      # optional: for S3 model download support
